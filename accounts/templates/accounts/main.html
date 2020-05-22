@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static '/css/main.css' %}">
+	
+	<title>
+	{% block title %}
+	{% endblock %}
+	</title>
+</head>
+<body>
+		{% include 'accounts/navbar.html' %}
+		{% block content %}
+		{% endblock %}
+	<hr>
+	<footer class="page-footer pt-4">
+		<div class="footer-top-image"></div>
+		<div class="container-fluid">
+			<div class="row  px-3  pt-5">
+				<div class="col-md-3 col-6">
+					<div class="title text-center">
+						<img src="{% static 'images/1.png' %}" alt="" class="navbar-brand" id="logo" style="float: left !important;">
+					</div>
+					<ul class="list-unstyled">
+						<li><i class="fa fa-envelope" aria-hidden="true"><span class="pl-3">info.FohorMalai@gmail.com</span></i></li>
+						<li><i class="fa fa-phone" aria-hidden="true"><span class="pl-3">+977-9843188753</span></i></li>
+						<li><i class="fa fa-address-book" aria-hidden="true"><span class="pl-3">Baneshwor, Kathmandu</span></i></li>
+					</ul>
+				</div>
+				<div class="col-md-2 col-6">
+					<div class="title">
+						<h5>About</h5>
+					</div>
+					<div class="content">
+						<ul class="list-unstyled">
+							<li> <a href="#">About us</a></li>
+							<li> <a href="#">Our Team</a></li>
+							<li> <a href="#">What we do?</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-2 col-6">
+					<div class="title">
+						<h5>Quick Links</h5>
+					</div>
+					<div class="content">
+						<ul class="list-unstyled">
+							<li> <a href="#">Properties</a></li>
+							<li> <a href="#">Products</a></li>
+							<li> <a href="#">Services</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-2 col-6">
+					<div class="title">
+						<h5>Important Links</h5>
+					</div>
+					<div class="content">
+						<ul class="list-unstyled">
+							<li> <a href="#">Terms and Conditions</a></li>
+							<li> <a href="#">Privacy Policy</a></li>
+							<li> <a href="#">Pricing Policy</a></li>
+							<li> <a href="#">Adding Properties Policy</a></li>
+							<li> <a href="#">Buying and Selling Guide</a></li>
+							<li> <a href="#">Payment Method</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="single">
+						<div class="title">
+							<h5>Subscribe Us</h5>
+						</div>
+						<div class="content">
+							<p>Subcribe to our email newsletter today  to receive updates on latest properties, products and services
+							</p>
+							<form action="#">
+								<div class="input-group">
+									<input type="email" class="form-control" placeholder="Enter your email">
+									<button class="btn btn-subscrive" type="submit"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<hr><p>Image and information use in this website is strictly prohibited to copy or reproduce in any way <br>
+						Copy right 2019 | All right reserved. Site develop and maintance by FohorMalai
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>

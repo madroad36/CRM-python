@@ -1,0 +1,133 @@
+{% extends 'accounts/main.html' %}
+{% block title %}
+Customer
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+	<br>
+
+	<div class="row">
+		<div class="col-md">
+			<div class="card card-body">
+				<h5>Customer:</h5>
+				<hr>
+				<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
+				<button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal">
+					Place Order
+				</button>
+				{# <a class="btn btn-outline-danger  btn-sm btn-block" href="{% url 'create_order '%}">Place Order</a> #}
+
+			</div>
+		</div>
+
+		<div class="col-md">
+			<div class="card card-body">
+				<h5>Contact Information</h5>
+				<hr>
+				<p>Email: {{customer.email}} </p>
+				<p>Phone: {{customer.phone}} </p>
+			</div>
+		</div>
+
+		<div class="col-md">
+			<div class="card card-body">
+				<h5>Total Orders</h5>
+				<hr>
+				<h1 style="text-align: center;padding: 10px">{{total_orders}}</h1>
+			</div>
+		</div>
+	</div>
+
+
+	<br>
+	<div class="row">
+		<div class="col">
+			<div class="card card-body">
+				<form method="get">
+					{{myfilter.form}}
+					<button class="btn btn-primary" type="submit">Search</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-md">
+			<div class="card card-body">
+				<table class="table table-sm">
+					<tr>
+						<th>Product</th>
+						<th>Category</th>
+						<th>Date Orderd</th>
+						<th>Status</th>
+						<th>Update</th>
+						<th>Remove</th>
+					</tr>
+					{% for order in orders %}
+					<tr>
+						<td>{{order.product}}</td>
+						<td>{{order.product.category}}</td>
+						<td>{{order.date_created}}</td>
+						<td><button class="btn btn-sm btn-secondary">{{order.status}}</button></td>
+						<td><a href="{% url 'update_order' order.id %}" class="btn btn-sm btn-outline-primary">Update</a></td>
+						<td><a href="{% url 'delete_order' order.id %}" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete">Delete</a></td>
+						<form action="{% url 'delete_order' order.id %}" method="POST">
+							{% csrf_token %}
+							<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Delete Order</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="alert alert-danger" role="alert">
+												Are You Sure You Want To Delete: {{order.product}}
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<form action="{% url 'create_order' customer.id %}" method="POST">
+	{% csrf_token %}
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					{{ formset.management_form }}
+					{% for form in formset %}
+					{{form}} 	
+					<hr>
+					{% endfor %}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}
